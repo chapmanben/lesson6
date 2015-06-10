@@ -16,7 +16,7 @@ namespace comp2007_wed1_Lesson5.Models
     public partial class gc200261581Entities1 : DbContext
     {
         public gc200261581Entities1()
-            : base("name=gc200261581Entities1")
+            : base("name=DefaultConnection")
         {
         }
 
