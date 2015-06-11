@@ -87,6 +87,7 @@
   <ItemGroup>
     <Content Include="courses.aspx" />
     <Content Include="default.aspx" />
+    <Content Include="department.aspx" />
     <Content Include="departments.aspx" />
     <Content Include="scripts\ai.0.15.0-build12287.js" />
     <Content Include="scripts\ai.0.15.0-build12287.min.js" />
@@ -108,6 +109,13 @@
     </Compile>
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="department.aspx.cs">
+      <DependentUpon>department.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="department.aspx.designer.cs">
+      <DependentUpon>department.aspx</DependentUpon>
     </Compile>
     <Compile Include="departments.aspx.cs">
       <DependentUpon>departments.aspx</DependentUpon>
