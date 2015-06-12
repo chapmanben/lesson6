@@ -139,10 +139,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ContosoModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cours.cs">
+    <Compile Include="Models\Course.cs">
       <DependentUpon>ContosoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Department.cs">
+    <Compile Include="Models\Departments.cs">
       <DependentUpon>ContosoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Enrollment.cs">

@@ -11,18 +11,18 @@ namespace comp2007_wed1_Lesson5.Models
 {
     using System;
     using System.Collections.Generic;
-
-    public partial class Department
+    
+    public partial class Departments
     {
-        public Department()
+        public Departments()
         {
-            this.Courses = new HashSet<Cours>();
+            this.Courses = new HashSet<Course>();
         }
-
+    
         public int DepartmentID { get; set; }
         public string Name { get; set; }
         public Nullable<decimal> Budget { get; set; }
-
-        public virtual ICollection<Cours> Courses { get; set; }
+    
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }

@@ -99,7 +99,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gc200261581Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Cours">
+        <EntityType Name="Course">
           <Key>
             <PropertyRef Name="CourseID" />
           </Key>
@@ -110,7 +110,7 @@
           <NavigationProperty Name="Department" Relationship="Self.FK_Courses_DepartmentID" FromRole="Courses" ToRole="Departments" />
           <NavigationProperty Name="Enrollments" Relationship="Self.FK_Enrollments_CourseID" FromRole="Courses" ToRole="Enrollments" />
         </EntityType>
-        <EntityType Name="Department">
+        <EntityType Name="Departments">
           <Key>
             <PropertyRef Name="DepartmentID" />
           </Key>
@@ -141,8 +141,8 @@
           <NavigationProperty Name="Enrollments" Relationship="Self.FK_Enrollments_StudentID" FromRole="Students" ToRole="Enrollments" />
         </EntityType>
         <Association Name="FK_Courses_DepartmentID">
-          <End Role="Departments" Type="Self.Department" Multiplicity="1" />
-          <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+          <End Role="Departments" Type="gc200261581Model.Departments" Multiplicity="1" />
+          <End Role="Courses" Type="gc200261581Model.Course" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Departments">
               <PropertyRef Name="DepartmentID" />
@@ -153,7 +153,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Enrollments_CourseID">
-          <End Role="Courses" Type="Self.Cours" Multiplicity="1" />
+          <End Role="Courses" Type="gc200261581Model.Course" Multiplicity="1" />
           <End Role="Enrollments" Type="Self.Enrollment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Courses">
@@ -177,12 +177,12 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="DefaultConnection" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Courses" EntityType="Self.Cours" />
-          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="Courses" EntityType="gc200261581Model.Course" />
+          <EntitySet Name="Departments1" EntityType="gc200261581Model.Departments" />
           <EntitySet Name="Enrollments" EntityType="Self.Enrollment" />
           <EntitySet Name="Students" EntityType="Self.Student" />
           <AssociationSet Name="FK_Courses_DepartmentID" Association="Self.FK_Courses_DepartmentID">
-            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Departments" EntitySet="Departments1" />
             <End Role="Courses" EntitySet="Courses" />
           </AssociationSet>
           <AssociationSet Name="FK_Enrollments_CourseID" Association="Self.FK_Enrollments_CourseID">
@@ -201,7 +201,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="gc200261581ModelStoreContainer" CdmEntityContainer="DefaultConnection">
           <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="gc200261581Model.Cours">
+            <EntityTypeMapping TypeName="gc200261581Model.Course">
               <MappingFragment StoreEntitySet="Courses">
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
@@ -210,8 +210,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="gc200261581Model.Department">
+          <EntitySetMapping Name="Departments1">
+            <EntityTypeMapping TypeName="gc200261581Model.Departments">
               <MappingFragment StoreEntitySet="Departments">
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

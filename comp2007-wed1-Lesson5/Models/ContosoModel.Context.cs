@@ -12,21 +12,21 @@ namespace comp2007_wed1_Lesson5.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
-    public partial class gc200261581Entities1 : DbContext
+    
+    public partial class DefaultConnection : DbContext
     {
-        public gc200261581Entities1()
+        public DefaultConnection()
             : base("name=DefaultConnection")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-
-        public virtual DbSet<Cours> Courses { get; set; }
-        public virtual DbSet<Department> Departments { get; set; }
+    
+        public virtual DbSet<Course> Courses { get; set; }
+        public virtual DbSet<Departments> Departments1 { get; set; }
         public virtual DbSet<Enrollment> Enrollments { get; set; }
         public virtual DbSet<Student> Students { get; set; }
     }

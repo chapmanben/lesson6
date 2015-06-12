@@ -11,20 +11,20 @@ namespace comp2007_wed1_Lesson5.Models
 {
     using System;
     using System.Collections.Generic;
-
-    public partial class Cours
+    
+    public partial class Course
     {
-        public Cours()
+        public Course()
         {
             this.Enrollments = new HashSet<Enrollment>();
         }
-
+    
         public int CourseID { get; set; }
         public string Title { get; set; }
         public int Credits { get; set; }
         public int DepartmentID { get; set; }
-
-        public virtual Department Department { get; set; }
+    
+        public virtual Departments Department { get; set; }
         public virtual ICollection<Enrollment> Enrollments { get; set; }
     }
 }

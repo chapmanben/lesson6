@@ -24,7 +24,7 @@ namespace comp2007_wed1_Lesson5
         protected void getStudents()
         {
             //connect to EF
-            using (gc200261581Entities1 db = new gc200261581Entities1())
+            using (DefaultConnection db = new DefaultConnection())
             {
                 //query db
                 var Students = from s in db.Students
@@ -44,7 +44,7 @@ namespace comp2007_wed1_Lesson5
             Int32 studentID = Convert.ToInt32(grdStudents.DataKeys[selectedRow].Values["StudentID"]);
 
             //use EF to remove the selected student from the DB
-            using (gc200261581Entities1 db = new gc200261581Entities1())
+            using (DefaultConnection db = new DefaultConnection())
             {
                 Student s = (from objs in db.Students
                              where objs.StudentID == studentID

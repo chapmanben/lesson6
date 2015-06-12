@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b6982b356b884148a92a83dc7961f684" Name="Diagram1">
-        <EntityTypeShape EntityType="gc200261581Model.Cours" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="gc200261581Model.Department" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="gc200261581Model.Course" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="gc200261581Model.Departments" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="gc200261581Model.Enrollment" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="gc200261581Model.Student" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="gc200261581Model.Student" Width="1.5" PointX="7.625" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="gc200261581Model.FK_Courses_DepartmentID" ManuallyRouted="false" />
         <AssociationConnector Association="gc200261581Model.FK_Enrollments_CourseID" ManuallyRouted="false" />
         <AssociationConnector Association="gc200261581Model.FK_Enrollments_StudentID" ManuallyRouted="false" />

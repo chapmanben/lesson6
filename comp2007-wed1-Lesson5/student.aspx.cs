@@ -27,7 +27,7 @@ namespace comp2007_wed1_Lesson5
         //populate the form with student information
             Int32 studentID = Convert.ToInt32(Request.QueryString["StudentID"]);
 
-            using (gc200261581Entities1 db = new gc200261581Entities1()){
+            using (DefaultConnection db = new DefaultConnection()){
                 Student s = (from objs in db.Students
                                  where objs.StudentID == studentID
                                  select objs).FirstOrDefault();
@@ -49,7 +49,7 @@ namespace comp2007_wed1_Lesson5
         protected void btnSave_Click(object sender, EventArgs e)
         {
             //use EF to connect to SQL server
-            using (gc200261581Entities1 db = new gc200261581Entities1())
+            using (DefaultConnection db = new DefaultConnection())
             {
                 
                 Student s = new Student();
