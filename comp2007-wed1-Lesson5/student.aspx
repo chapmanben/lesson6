@@ -21,7 +21,7 @@
                     ControlToValidate="txtEnrollmentDate" CssClass="alert alert-danger" Type="Date" MinimumValue="01/01/2000" MaximumValue="12/31/2999"></asp:RangeValidator>
         </div>
     </fieldset>
-    <div class="col-sm-offset-2">
+    <div>
     <asp:Button ID="btnSave"  runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click"/>
     </div>
 </asp:Content>

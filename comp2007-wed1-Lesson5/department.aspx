@@ -16,7 +16,7 @@
         </div>
        
     </fieldset>
-    <div class="col-sm-offset-2">
+    <div>
     <asp:Button ID="btnSave"  runat="server" Text="Save" CssClass="btn btn-primary" OnClick="btnSave_Click"/>
     </div>
 </asp:Content>
