@@ -7,13 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace comp2007_wed1_Lesson5
-{
-
-
-    public partial class student
-    {
-
+namespace comp2007_wed1_Lesson5 {
+    
+    
+    public partial class student {
+        
         /// <summary>
         /// txtLastName control.
         /// </summary>
@@ -22,7 +20,7 @@ namespace comp2007_wed1_Lesson5
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLastName;
-
+        
         /// <summary>
         /// txtFirstMidName control.
         /// </summary>
@@ -31,7 +29,7 @@ namespace comp2007_wed1_Lesson5
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFirstMidName;
-
+        
         /// <summary>
         /// txtEnrollmentDate control.
         /// </summary>
@@ -40,7 +38,7 @@ namespace comp2007_wed1_Lesson5
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEnrollmentDate;
-
+        
         /// <summary>
         /// RangeValidator1 control.
         /// </summary>
@@ -49,7 +47,7 @@ namespace comp2007_wed1_Lesson5
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RangeValidator RangeValidator1;
-
+        
         /// <summary>
         /// btnSave control.
         /// </summary>
@@ -58,5 +56,23 @@ namespace comp2007_wed1_Lesson5
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
+        
+        /// <summary>
+        /// pnlCourses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlCourses;
+        
+        /// <summary>
+        /// grdCourses control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdCourses;
     }
 }

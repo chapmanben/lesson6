@@ -18,6 +18,7 @@ namespace comp2007_wed1_Lesson5
             //if sav wasn't clicked & we have a student ID in the url.
             if ((!IsPostBack) && (Request.QueryString.Count > 0))
             {
+                pnlCourses.Visible = false;
                 getStudent();
             }
             
@@ -37,11 +38,16 @@ namespace comp2007_wed1_Lesson5
                     txtLastName.Text = s.LastName;
                     txtEnrollmentDate.Text = s.EnrollmentDate.ToString("mm-dd-yyyy");
                 }
-                //else
-                //{
-                //    Response.Redirect("students.aspx");
-                //}
 
+                 var objE = (from en in db.Enrollments
+                            join c in db.Courses on en.CourseID equals c.CourseID
+                            join d in db.Departments1 on c.DepartmentID equals d.DepartmentID
+                            where en.StudentID == studentID
+                            select new { en.EnrollmentID, en.Grade, c.Title, d.Name});
+               
+                grdCourses.DataSource = objE.ToList();
+                grdCourses.DataBind();
+                pnlCourses.Visible = true;
 
             }
         }
@@ -79,6 +85,21 @@ namespace comp2007_wed1_Lesson5
 
             Response.Redirect("students.aspx");
             //redirect to the updated students page
+        }
+
+        protected void grdCourses_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            Int32 EnrollmentID = Convert.ToInt32(grdCourses.DataKeys[e.RowIndex].Values["EnrollmentID"]);
+            
+            using(DefaultConnection db = new DefaultConnection()){
+                Enrollment objE = (from en in db.Enrollments
+                                   where en.EnrollmentID == EnrollmentID
+                                       select en).FirstOrDefault();
+                db.Enrollments.Remove(objE);
+                db.SaveChanges();
+
+                getStudent();
+            }
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 //referencing EF Models
 using comp2007_wed1_Lesson5.Models;
 using System.Web.ModelBinding;
+using System.Linq.Dynamic;
 
 namespace comp2007_wed1_Lesson5
 {
@@ -17,6 +18,8 @@ namespace comp2007_wed1_Lesson5
         {
             if (!IsPostBack)
             {
+                Session["sortColumn"] = "StudentID";
+                Session["sortDirection"] = "ASC";
                 getStudents();
             }
         }
@@ -28,9 +31,10 @@ namespace comp2007_wed1_Lesson5
             {
                 //query db
                 var Students = from s in db.Students
-                               select s;
+                               select new { s.StudentID, s.LastName, s.FirstMidName, s.EnrollmentDate };
 
-                grdStudents.DataSource = Students.ToList();
+                string sortString = Session["sortColumn"].ToString() + " " + Session["sortDirection"].ToString();
+                grdStudents.DataSource = Students.AsQueryable().OrderBy(sortString).ToList();
                 grdStudents.DataBind();
             }
         }
@@ -60,7 +64,67 @@ namespace comp2007_wed1_Lesson5
 
         }
 
+
+        protected void grdStudents_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grdStudents.PageSize = e.NewPageIndex;
+            getStudents();
+        }
+
+        protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //set new page size
+            grdStudents.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
+            getStudents();
+        }
         
+
+        protected void grdStudents_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            Session["sortColumn"] = e.SortExpression;
+
+            if (Session["sortDirection"].ToString() == "ASC")
+            {
+                Session["sortDirection"] = "DESC";
+            }
+            else
+            {
+                Session["sortDirection"] = "ASC";
+            }
+            getStudents();
+        }
+
+        protected void grdStudents_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (IsPostBack)
+            {
+                if (e.Row.RowType == DataControlRowType.Header)
+                {
+                    Image SortImage = new Image();
+
+                    for (int i = 0; i <= grdStudents.Columns.Count - 1; i++)
+                    {
+                        if (grdStudents.Columns[i].SortExpression == Session["sortColumn"].ToString())
+                        {
+                            if (Session["sortDirection"].ToString() == "DESC")
+                            {
+                                SortImage.ImageUrl = "images/desc.jpg";
+                                SortImage.AlternateText = "Sort Descending";
+                            }
+                            else
+                            {
+                                SortImage.ImageUrl = "images/asc.jpg";
+                                SortImage.AlternateText = "Sort Ascending";
+                            }
+                            e.Row.Cells[i].Controls.Add(SortImage);
+                        }
+                    }
+                }
+            }
+
+
+        }
+
 
     }
 }

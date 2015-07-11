@@ -7,13 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace comp2007_wed1_Lesson5
-{
-
-
-    public partial class students
-    {
-
+namespace comp2007_wed1_Lesson5 {
+    
+    
+    public partial class students {
+        
+        /// <summary>
+        /// ddlPageSize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPageSize;
+        
         /// <summary>
         /// grdStudents control.
         /// </summary>

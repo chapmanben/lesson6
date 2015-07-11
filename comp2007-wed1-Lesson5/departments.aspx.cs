@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 //referencing EF Models
 using comp2007_wed1_Lesson5.Models;
 using System.Web.ModelBinding;
+using System.Linq.Dynamic;
 
 namespace comp2007_wed1_Lesson5
 {
@@ -20,6 +21,8 @@ namespace comp2007_wed1_Lesson5
         {
             if (!IsPostBack)
             {
+                Session["sortColumn"] = "DepartmentID";
+                Session["sortDirection"] = "ASC";
                 getDepartments();
                 
             }
@@ -32,9 +35,11 @@ namespace comp2007_wed1_Lesson5
             {
                 //query db
                 var Departments = from d in db.Departments1
-                               select d;
+                              select new { d.DepartmentID, d.Name, d.Budget};
 
-                grdDepartments.DataSource = Departments.ToList();
+                string sortString = Session["sortColumn"].ToString() + " " + Session["sortDirection"].ToString();
+                grdDepartments.DataSource = Departments.AsQueryable().OrderBy(sortString).ToList();
+
                 grdDepartments.DataBind();
                 
             }
@@ -62,6 +67,64 @@ namespace comp2007_wed1_Lesson5
             //refresh the grid
             getDepartments();
 
+        }
+
+        protected void grdDepartments_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            grdDepartments.PageIndex = e.NewPageIndex;
+            getDepartments();
+        }
+
+        protected void grdDepartments_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            Session["sortColumn"] = e.SortExpression;
+
+            if (Session["sortDirection"].ToString() == "ASC")
+            {
+                Session["sortDirection"] = "DESC";
+            }
+            else
+            {
+                Session["sortDirection"] = "ASC";
+            }
+            getDepartments();
+        }
+
+        protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //set new page size
+            grdDepartments.PageSize = Convert.ToInt32(ddlPageSize.SelectedValue);
+            getDepartments();
+        }
+
+
+        protected void grdDepartments_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (IsPostBack)
+            {
+                if (e.Row.RowType == DataControlRowType.Header)
+                {
+                    Image SortImage = new Image();
+
+                    for (int i = 0; i <= grdDepartments.Columns.Count - 1; i++)
+                    {
+                        if (grdDepartments.Columns[i].SortExpression == Session["sortColumn"].ToString())
+                        {
+                            if (Session["sortDirection"].ToString() == "DESC")
+                            {
+                                SortImage.ImageUrl = "images/desc.jpg";
+                                SortImage.AlternateText = "Sort Descending";
+                            }
+                            else
+                            {
+                                SortImage.ImageUrl = "images/asc.jpg";
+                                SortImage.AlternateText = "Sort Ascending";
+                            }
+                            e.Row.Cells[i].Controls.Add(SortImage);
+                        }
+                    }
+                }
+            }
         } //end of grdDepartments_RowDeleting
 
         

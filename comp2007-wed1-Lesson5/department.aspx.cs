@@ -18,6 +18,7 @@ namespace comp2007_wed1_Lesson5
             //if sav wasn't clicked & we have a student ID in the url.
             if ((!IsPostBack) && (Request.QueryString.Count > 0))
             {
+                pnlCourses.Visible = false;
                 getDepartments();
             }
         }
@@ -38,6 +39,15 @@ namespace comp2007_wed1_Lesson5
                     txtDepartmentName.Text = d.Name;
                     txtBudget.Text = d.Budget.ToString();
                 }
+
+                var objE = (from en in db.Courses
+                            join dept in db.Departments1 on en.DepartmentID equals dept.DepartmentID
+                            where en.DepartmentID == departmentID
+                            select new { en.CourseID, en.Title });
+
+                grdCourses.DataSource = objE.ToList();
+                grdCourses.DataBind();
+                pnlCourses.Visible = true;
             }
         }//end of getDepartments()
 
@@ -74,6 +84,22 @@ namespace comp2007_wed1_Lesson5
 
             Response.Redirect("departments.aspx");
             //redirect to the updated students page
+        }
+
+        protected void grdCourses_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            Int32 CourseID = Convert.ToInt32(grdCourses.DataKeys[e.RowIndex].Values["CourseID"]);
+
+            using (DefaultConnection db = new DefaultConnection())
+            {
+                Course objE = (from en in db.Courses
+                                   where en.CourseID == CourseID
+                                   select en).FirstOrDefault();
+                db.Courses.Remove(objE);
+                db.SaveChanges();
+
+                getDepartments();
+            }
         }
     }
 }

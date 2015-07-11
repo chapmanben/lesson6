@@ -7,13 +7,23 @@
         <h1>Students</h1>
         <a href="student.aspx">Add Student</a>
 
+        <div>
+            <label for="ddlPageSize">Records Per Page</label>
+            <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
+                <asp:ListItem Value="3" Text="3"></asp:ListItem>
+                <asp:ListItem Value="5" Text="5"></asp:ListItem>
+                <asp:ListItem Value="10" Text="10"></asp:ListItem>
+            </asp:DropDownList>
+        </div>
+
         <asp:GridView ID="grdStudents" runat="server" CssClass="table table-striped table-hover" AutoGenerateColumns="false" 
-            OnRowDeleting="grdStudents_RowDeleting" DataKeyNames="StudentID" >
+            OnRowDeleting="grdStudents_RowDeleting" DataKeyNames="StudentID" AllowPaging="true" PageSize="3" OnPageIndexChanging="grdStudents_PageIndexChanging" AllowSorting="true"
+            OnSorting="grdStudents_Sorting" OnRowDataBound="grdStudents_RowDataBound">
             <Columns>
-                <asp:BoundField DataField="StudentID" HeaderText="Student ID" />
-                <asp:BoundField DataField="LastName" HeaderText="Last Name"/>
-                <asp:BoundField DataField="FirstMidName" HeaderText="First Name" />
-                <asp:BoundField DataField="EnrollmentDate" HeaderText="Enrollment Date" DataFormatString="{0:dddd, MMMM dd, yyyy}" />
+                <asp:BoundField DataField="StudentID" HeaderText="Student ID" SortExpression="StudentID"/>
+                <asp:BoundField DataField="LastName" HeaderText="Last Name" SortExpression="LastName"/>
+                <asp:BoundField DataField="FirstMidName" HeaderText="First Name" SortExpression="FirstMidName" />
+                <asp:BoundField DataField="EnrollmentDate" HeaderText="Enrollment Date" DataFormatString="{0:dddd, MMMM dd, yyyy}" SortExpression="EnrollmentDate"/>
                 <asp:HyperLinkField HeaderText="Edit" text="Edit" NavigateUrl="student.aspx" DataNavigateUrlFields="StudentID" 
                     DataNavigateUrlFormatString="student.aspx?StudentID={0}"/>
                 <asp:CommandField HeaderText="Delete" DeleteText="Delete" ShowDeleteButton="true" />
