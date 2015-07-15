@@ -16,7 +16,7 @@ namespace comp2007_wed1_Lesson5.Models
     public partial class DefaultConnection : DbContext
     {
         public DefaultConnection()
-            : base("name=DefaultConnection")
+            : base("name=DefaultConnectionEF")
         {
         }
     

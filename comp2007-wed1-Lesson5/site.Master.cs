@@ -11,7 +11,13 @@ namespace comp2007_wed1_Lesson5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (HttpContext.Current.User.Identity.IsAuthenticated) { 
+            plhPublic.Visible = false;
+            plhPrivate.Visible = true;
+        } else {
+            plhPublic.Visible = true;
+            plhPrivate.Visible = false;
+        }
         }
     }
 }

@@ -10,51 +10,51 @@
 namespace comp2007_wed1_Lesson5 {
     
     
-    public partial class site {
+    public partial class course {
         
         /// <summary>
-        /// head control.
+        /// txtCourseName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.TextBox txtCourseName;
         
         /// <summary>
-        /// plhPublic control.
+        /// ddlDepartments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder plhPublic;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDepartments;
         
         /// <summary>
-        /// plhPrivate control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder plhPrivate;
+        protected global::System.Web.UI.WebControls.Button btnSave;
         
         /// <summary>
-        /// form1 control.
+        /// pnlStudents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Panel pnlStudents;
         
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// grdStudents control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.GridView grdStudents;
     }
 }

@@ -61,9 +61,39 @@
     <Reference Include="Microsoft.ApplicationInsights.Web.TelemetryChannel">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Web.TelemetryChannel.0.17.0\lib\net45\Microsoft.ApplicationInsights.Web.TelemetryChannel.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Diagnostics.Instrumentation.Extensions.Intercept">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.0.17.0\lib\net45\Microsoft.Diagnostics.Instrumentation.Extensions.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="System.Linq.Dynamic">
       <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
@@ -88,32 +118,36 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="course.aspx" />
-    <Content Include="courses.aspx" />
+    <Content Include="admin\course.aspx" />
+    <Content Include="admin\courses.aspx" />
     <Content Include="default.aspx" />
-    <Content Include="department.aspx" />
-    <Content Include="departments.aspx" />
+    <Content Include="admin\department.aspx" />
+    <Content Include="admin\departments.aspx" />
     <Content Include="images\asc.jpg" />
     <Content Include="images\desc.jpg" />
+    <Content Include="login.aspx" />
+    <Content Include="logout.aspx" />
+    <Content Include="admin\main_menu.aspx" />
+    <Content Include="registration.aspx" />
     <Content Include="scripts\ai.0.15.0-build12287.js" />
     <Content Include="scripts\ai.0.15.0-build12287.min.js" />
-    <Content Include="student.aspx" />
-    <Content Include="students.aspx" />
+    <Content Include="admin\student.aspx" />
+    <Content Include="admin\students.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="course.aspx.cs">
+    <Compile Include="admin\course.aspx.cs">
       <DependentUpon>course.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="course.aspx.designer.cs">
+    <Compile Include="admin\course.aspx.designer.cs">
       <DependentUpon>course.aspx</DependentUpon>
     </Compile>
-    <Compile Include="courses.aspx.cs">
+    <Compile Include="admin\courses.aspx.cs">
       <DependentUpon>courses.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="courses.aspx.designer.cs">
+    <Compile Include="admin\courses.aspx.designer.cs">
       <DependentUpon>courses.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
@@ -123,19 +157,40 @@
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="department.aspx.cs">
+    <Compile Include="admin\department.aspx.cs">
       <DependentUpon>department.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="department.aspx.designer.cs">
+    <Compile Include="admin\department.aspx.designer.cs">
       <DependentUpon>department.aspx</DependentUpon>
     </Compile>
-    <Compile Include="departments.aspx.cs">
+    <Compile Include="admin\departments.aspx.cs">
       <DependentUpon>departments.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="departments.aspx.designer.cs">
+    <Compile Include="admin\departments.aspx.designer.cs">
       <DependentUpon>departments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\main_menu.aspx.cs">
+      <DependentUpon>main_menu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\main_menu.aspx.designer.cs">
+      <DependentUpon>main_menu.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\ContosoModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -165,6 +220,13 @@
       <DependentUpon>ContosoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="registration.aspx.cs">
+      <DependentUpon>registration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="registration.aspx.designer.cs">
+      <DependentUpon>registration.aspx</DependentUpon>
+    </Compile>
     <Compile Include="site.Master.cs">
       <DependentUpon>site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -172,18 +234,19 @@
     <Compile Include="site.Master.designer.cs">
       <DependentUpon>site.Master</DependentUpon>
     </Compile>
-    <Compile Include="student.aspx.cs">
+    <Compile Include="Startup.cs" />
+    <Compile Include="admin\student.aspx.cs">
       <DependentUpon>student.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="student.aspx.designer.cs">
+    <Compile Include="admin\student.aspx.designer.cs">
       <DependentUpon>student.aspx</DependentUpon>
     </Compile>
-    <Compile Include="students.aspx.cs">
+    <Compile Include="admin\students.aspx.cs">
       <DependentUpon>students.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="students.aspx.designer.cs">
+    <Compile Include="admin\students.aspx.designer.cs">
       <DependentUpon>students.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -221,6 +284,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

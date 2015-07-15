@@ -16,11 +16,19 @@
 </head>
 <body>
     <nav class="nav navbar-default">
-        <a href="default.aspx" class="nav navbar-brand">Contoso University</a>
+        <a href="/default.aspx" class="nav navbar-brand">Contoso University</a>
         <ul class="nav navbar-nav">
-            <li><a href="departments.aspx">Departments</a></li>
-            <li><a href="courses.aspx">Courses</a></li>
-            <li><a href="students.aspx">Students</a></li>
+            <asp:PlaceHolder ID="plhPublic" runat="server">
+                <li><a href="/register.aspx">Register</a></li>
+                <li><a href="/login.aspx">Login</a></li>
+            </asp:PlaceHolder>
+            <asp:PlaceHolder ID="plhPrivate" runat="server">
+                <li><a href="/admin/main_menu.aspx">Main Menu</a></li>
+                <li><a href="/admin/departments.aspx">Departments</a></li>
+                <li><a href="/admin/courses.aspx">Courses</a></li>
+                <li><a href="/admin/students.aspx">Students</a></li>
+                <li><a href="/logout.aspx">Logout</a></li>
+            </asp:PlaceHolder>
         </ul>
     </nav>
     <form id="form1" runat="server" class="form form-horizontal">
