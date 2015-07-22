@@ -14,11 +14,11 @@
     </div>
     <div class="form-group">
         <label for="txtpassword">Password: </label>
-        <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
     </div>
     <div class="form-group">
         <label for="txtConfirm">Confirm: </label>
-        <asp:TextBox ID="txtConfirm" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtConfirm" runat="server" TextMode="Password"></asp:TextBox>
         <asp:CompareValidator ID="CompareValidator1" runat="server" ErrorMessage="Passwords Do Not Match" operator="Equal" ControlToValidate="txtConfirm" ControlToCompare="txtPassword" CssClass="label label-warning"></asp:CompareValidator>
     </div>
     <div class="col-sm-offset-2">

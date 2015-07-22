@@ -28,17 +28,24 @@ namespace comp2007_wed1_Lesson5
 
         protected void getCourses()
         {
-            //connect to EF
-            using (DefaultConnection db = new DefaultConnection())
+            try
             {
-                //query db
-                var Courses = from c in db.Courses
-                              select new { c.CourseID, c.Title, c.Credits, c.Department.Name };
+                //connect to EF
+                using (DefaultConnection db = new DefaultConnection())
+                {
+                    //query db
+                    var Courses = from c in db.Courses
+                                  select new { c.CourseID, c.Title, c.Credits, c.Department.Name };
 
-                string sortString = Session["sortColumn"].ToString()+ " " + Session["sortDirection"].ToString();
-                grdCourses.DataSource = Courses.AsQueryable().OrderBy(sortString).ToList();
-                grdCourses.DataBind();
-                
+                    string sortString = Session["sortColumn"].ToString() + " " + Session["sortDirection"].ToString();
+                    grdCourses.DataSource = Courses.AsQueryable().OrderBy(sortString).ToList();
+                    grdCourses.DataBind();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("/errors.aspx");
             }
         }//end of getDepartments()
         
@@ -50,19 +57,27 @@ namespace comp2007_wed1_Lesson5
             //get the selected StudentID using the grids Data Key collection
             Int32 courseID = Convert.ToInt32(grdCourses.DataKeys[selectedRow].Values["CourseID"]);
 
-            //use EF to remove the selected student from the DB
-            using (DefaultConnection db = new DefaultConnection())
+            try
             {
-                Course c = (from objs in db.Courses
-                             where objs.CourseID == courseID
-                             select objs).FirstOrDefault();
 
-                //do the delete
-                db.Courses.Remove(c);
-                db.SaveChanges();
+                //use EF to remove the selected student from the DB
+                using (DefaultConnection db = new DefaultConnection())
+                {
+                    Course c = (from objs in db.Courses
+                                where objs.CourseID == courseID
+                                select objs).FirstOrDefault();
+
+                    //do the delete
+                    db.Courses.Remove(c);
+                    db.SaveChanges();
+                }
+                //refresh the grid
+                getCourses();
             }
-            //refresh the grid
-            getCourses();
+            catch (Exception ex)
+            {
+                Response.Redirect("/errors.aspx");
+            }
 
         }//end of grdDepartments_RowDeleting
 

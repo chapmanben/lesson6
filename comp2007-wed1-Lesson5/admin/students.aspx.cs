@@ -26,16 +26,23 @@ namespace comp2007_wed1_Lesson5
 
         protected void getStudents()
         {
-            //connect to EF
-            using (DefaultConnection db = new DefaultConnection())
+            try
             {
-                //query db
-                var Students = from s in db.Students
-                               select new { s.StudentID, s.LastName, s.FirstMidName, s.EnrollmentDate };
+                //connect to EF
+                using (DefaultConnection db = new DefaultConnection())
+                {
+                    //query db
+                    var Students = from s in db.Students
+                                   select new { s.StudentID, s.LastName, s.FirstMidName, s.EnrollmentDate };
 
-                string sortString = Session["sortColumn"].ToString() + " " + Session["sortDirection"].ToString();
-                grdStudents.DataSource = Students.AsQueryable().OrderBy(sortString).ToList();
-                grdStudents.DataBind();
+                    string sortString = Session["sortColumn"].ToString() + " " + Session["sortDirection"].ToString();
+                    grdStudents.DataSource = Students.AsQueryable().OrderBy(sortString).ToList();
+                    grdStudents.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("/errors.aspx");
             }
         }
 
@@ -48,19 +55,26 @@ namespace comp2007_wed1_Lesson5
             Int32 studentID = Convert.ToInt32(grdStudents.DataKeys[selectedRow].Values["StudentID"]);
 
             //use EF to remove the selected student from the DB
-            using (DefaultConnection db = new DefaultConnection())
+            try
             {
-                Student s = (from objs in db.Students
-                             where objs.StudentID == studentID
-                             select objs).FirstOrDefault();
+                using (DefaultConnection db = new DefaultConnection())
+                {
+                    Student s = (from objs in db.Students
+                                 where objs.StudentID == studentID
+                                 select objs).FirstOrDefault();
 
-                //do the delete
-                db.Students.Remove(s);
-                db.SaveChanges();
+                    //do the delete
+                    db.Students.Remove(s);
+                    db.SaveChanges();
 
-            }
+                }
                 //refresh the grid
                 getStudents();
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("/errors.aspx");
+            }
 
         }
 

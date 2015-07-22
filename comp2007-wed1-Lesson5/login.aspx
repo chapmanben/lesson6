@@ -10,7 +10,7 @@
     </div>
     <div class="form-group">
         <label for="txtpassword">Password: </label>
-        <asp:TextBox ID="txtPassword" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
     </div>
 
     <div class="col-sm-offset-2">

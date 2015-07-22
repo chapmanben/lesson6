@@ -28,77 +28,99 @@ namespace comp2007_wed1_Lesson5
              Int32 departmentID = Convert.ToInt32(Request.QueryString["DepartmentID"]);
             
             //connect to EF
-            using (DefaultConnection db = new DefaultConnection())
-            {
-                //query db
-                Departments d = (from objs in db.Departments1
-                                 where objs.DepartmentID == departmentID
-                                 select objs).FirstOrDefault();
+             try
+             {
+                 using (DefaultConnection db = new DefaultConnection())
+                 {
+                     //query db
+                     Departments d = (from objs in db.Departments1
+                                      where objs.DepartmentID == departmentID
+                                      select objs).FirstOrDefault();
 
-                if (d != null) {
-                    txtDepartmentName.Text = d.Name;
-                    txtBudget.Text = d.Budget.ToString();
-                }
+                     if (d != null)
+                     {
+                         txtDepartmentName.Text = d.Name;
+                         txtBudget.Text = d.Budget.ToString();
+                     }
 
-                var objE = (from en in db.Courses
-                            join dept in db.Departments1 on en.DepartmentID equals dept.DepartmentID
-                            where en.DepartmentID == departmentID
-                            select new { en.CourseID, en.Title });
+                     var objE = (from en in db.Courses
+                                 join dept in db.Departments1 on en.DepartmentID equals dept.DepartmentID
+                                 where en.DepartmentID == departmentID
+                                 select new { en.CourseID, en.Title });
 
-                grdCourses.DataSource = objE.ToList();
-                grdCourses.DataBind();
-                pnlCourses.Visible = true;
-            }
+                     grdCourses.DataSource = objE.ToList();
+                     grdCourses.DataBind();
+                     pnlCourses.Visible = true;
+                 }
+             }
+             catch (Exception ex)
+             {
+                 Response.Redirect("/errors.aspx");
+             }
         }//end of getDepartments()
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
             //use EF to connect to SQL server
-            using (DefaultConnection db = new DefaultConnection())
+            try
             {
-
-                Departments d = new Departments();
-                Int32 departmentID = 0;
-                //check the query string for an ID. To determine add or update
-                if (Request.QueryString["DepartmentID"] != null)
+                using (DefaultConnection db = new DefaultConnection())
                 {
-                    //get id from url
-                    departmentID = Convert.ToInt32(Request.QueryString["DepartmentID"]);
 
-                    //get the current student from EF
-                    d = (from objs in db.Departments1
-                         where objs.DepartmentID == departmentID
-                         select objs).FirstOrDefault();
+                    Departments d = new Departments();
+                    Int32 departmentID = 0;
+                    //check the query string for an ID. To determine add or update
+                    if (Request.QueryString["DepartmentID"] != null)
+                    {
+                        //get id from url
+                        departmentID = Convert.ToInt32(Request.QueryString["DepartmentID"]);
+
+                        //get the current student from EF
+                        d = (from objs in db.Departments1
+                             where objs.DepartmentID == departmentID
+                             select objs).FirstOrDefault();
+                    }
+
+                    //use student model to save new student 
+                    d.Name = txtDepartmentName.Text;
+                    d.Budget = Convert.ToDecimal(txtBudget.Text);
+
+                    if (departmentID == 0)
+                    {
+                        db.Departments1.Add(d);
+                    }
+                    db.SaveChanges();
                 }
 
-                //use student model to save new student 
-                d.Name = txtDepartmentName.Text;
-                d.Budget = Convert.ToDecimal(txtBudget.Text);
-                
-                if (departmentID == 0)
-                {
-                    db.Departments1.Add(d);
-                }
-                db.SaveChanges();
+                Response.Redirect("departments.aspx");
+                //redirect to the updated students page
             }
-
-            Response.Redirect("departments.aspx");
-            //redirect to the updated students page
+            catch (Exception ex)
+            {
+                Response.Redirect("/errors.aspx");
+            }
         }
 
         protected void grdCourses_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             Int32 CourseID = Convert.ToInt32(grdCourses.DataKeys[e.RowIndex].Values["CourseID"]);
 
-            using (DefaultConnection db = new DefaultConnection())
+            try
             {
-                Course objE = (from en in db.Courses
+                using (DefaultConnection db = new DefaultConnection())
+                {
+                    Course objE = (from en in db.Courses
                                    where en.CourseID == CourseID
                                    select en).FirstOrDefault();
-                db.Courses.Remove(objE);
-                db.SaveChanges();
+                    db.Courses.Remove(objE);
+                    db.SaveChanges();
 
-                getDepartments();
+                    getDepartments();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Redirect("/errors.aspx");
             }
         }
     }

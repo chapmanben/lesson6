@@ -19,7 +19,7 @@
         <a href="/default.aspx" class="nav navbar-brand">Contoso University</a>
         <ul class="nav navbar-nav">
             <asp:PlaceHolder ID="plhPublic" runat="server">
-                <li><a href="/register.aspx">Register</a></li>
+                <li><a href="/registration.aspx">Register</a></li>
                 <li><a href="/login.aspx">Login</a></li>
             </asp:PlaceHolder>
             <asp:PlaceHolder ID="plhPrivate" runat="server">
