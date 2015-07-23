@@ -9,6 +9,10 @@ using System.Web.UI.WebControls;
 using comp2007_wed1_Lesson5.Models;
 using System.Web.ModelBinding;
 using System.Linq.Dynamic;
+//reference identity
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 
 namespace comp2007_wed1_Lesson5
 {
@@ -16,13 +20,27 @@ namespace comp2007_wed1_Lesson5
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+                var userStore = new UserStore<IdentityUser>();
+                var manager = new UserManager<IdentityUser>(userStore);
+
+                var user = User.Identity.GetUserId();
+
+
+                lblUserId.Text = "User ID: " + user;
+
             if (!IsPostBack)
             {
                 Session["sortColumn"] = "StudentID";
                 Session["sortDirection"] = "ASC";
                 getStudents();
+
+               
+
             }
         }
+
+        
+
 
         protected void getStudents()
         {
@@ -42,7 +60,7 @@ namespace comp2007_wed1_Lesson5
             }
             catch (Exception ex)
             {
-                Response.Redirect("/errors.aspx");
+                //Response.Redirect("/errors.aspx");
             }
         }
 
@@ -73,7 +91,7 @@ namespace comp2007_wed1_Lesson5
             }
             catch (Exception ex)
             {
-                Response.Redirect("/errors.aspx");
+                //Response.Redirect("/errors.aspx");
             }
 
         }

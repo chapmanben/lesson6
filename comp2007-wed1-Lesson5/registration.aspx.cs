@@ -39,6 +39,8 @@ namespace comp2007_wed1_Lesson5
                 var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 authenticationManager.SignIn(new AuthenticationProperties() { }, userIdentity);
                 Response.Redirect("/admin/main_menu.aspx");
+
+                
             }
             else
             {

@@ -13,6 +13,15 @@ namespace comp2007_wed1_Lesson5 {
     public partial class students {
         
         /// <summary>
+        /// lblUserId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUserId;
+        
+        /// <summary>
         /// ddlPageSize control.
         /// </summary>
         /// <remarks>

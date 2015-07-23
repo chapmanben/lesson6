@@ -7,6 +7,8 @@
         <h1>Students</h1>
         <a href="student.aspx">Add Student</a>
 
+        <asp:Label ID="lblUserId" runat="server" />
+
         <div>
             <label for="ddlPageSize">Records Per Page</label>
             <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
